@@ -2,6 +2,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const getTodos = require("./todos.js");
 const handleTodoRequest = require("./todo.js");
+const handleUserRequest = require("./user.js");
 
 admin.initializeApp();
 
@@ -22,3 +23,7 @@ exports.todos = functions
 exports.todo = functions
   .region("europe-west1")
   .https.onRequest(handleTodoRequest);
+
+exports.user = functions
+  .region("europe-west1")
+  .https.onRequest(handleUserRequest);
