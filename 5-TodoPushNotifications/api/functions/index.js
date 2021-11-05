@@ -3,6 +3,7 @@ const admin = require("firebase-admin");
 const getTodos = require("./todos.js");
 const handleTodoRequest = require("./todo.js");
 const handleUserRequest = require("./user.js");
+const sendNotificationToUsers = require("./notifications.js");
 
 admin.initializeApp();
 
@@ -27,3 +28,11 @@ exports.todo = functions
 exports.user = functions
   .region("europe-west1")
   .https.onRequest(handleUserRequest);
+
+exports.sendPush = functions
+  .region("europe-west1")
+  .https.onRequest((req, res) => {
+    console.log("Send notification called");
+    sendNotificationToUsers();
+    res.send("ok");
+  });
