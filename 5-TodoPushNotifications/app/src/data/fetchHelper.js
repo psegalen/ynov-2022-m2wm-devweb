@@ -40,6 +40,15 @@ const fetchHelper = {
         body: JSON.stringify({ avatar }),
       }
     ).then((response) => response.json()),
+  updateTokenForUser: async (userId, token) =>
+    fetch(
+      `https://europe-west1-ynov-todos.cloudfunctions.net/user?userId=${userId}`,
+      {
+        headers: { "Content-Type": "application/json" },
+        method: "PATCH",
+        body: JSON.stringify({ token }),
+      }
+    ).then((response) => response.json()),
 };
 
 export default fetchHelper;
